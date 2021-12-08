@@ -4,29 +4,30 @@ import "components/DayListItem.scss";
 import { PROPERTY_TYPES } from "@babel/types";
 
 export default function DayListItem(props) {
-   const {name, spots, setDay} = props;
-	 
-	 let dayClass = classNames("day-list__item", {
+	const { name, spots, setDay } = props;
+	console.log("props", props);
+
+	let dayClass = classNames("day-list__item", {
 		"day-list__item--selected": props.selected,
 		"day-list__item--full": spots === 0
 	});
-	const formatSpots = () =>{
-		if(spots === 0){
-		return "no spots remaining";
+	const formatSpots = () => {
+		if (spots === 0) {
+			return "no spots remaining";
 		}
-		else if(spots === 1) {
-			return  "1 spot remaining";
+		else if (spots === 1) {
+			return "1 spot remaining";
 		}
 		else {
-			return`${spots} spots remaining`;
+			return `${spots} spots remaining`;
 		}
 	}
 
-   return (
+	return (
 		<li className={dayClass} onClick={() => setDay(name)}>
-		<h2 className="text--regular">Day Name: {name}</h2> 
-		<h3 className="text--light">{formatSpots()} </h3>
-	</li>
-   );
+			<h2 className="text--regular">Day Name: {name}</h2>
+			<h3 className="text--light">{formatSpots()} </h3>
+		</li>
+	);
 }
 
