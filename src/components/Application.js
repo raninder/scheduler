@@ -5,6 +5,7 @@ import Appointment from "components/Appointment";
 import "components/Application.scss";
 import { getAppointmentsForDay } from "helpers/selectors.js";
 import { getInterview } from "helpers/selectors.js";
+import { getInterviewersForDay } from "helpers/selectors.js";
 
 
 export default function Application(props) {
@@ -39,6 +40,7 @@ export default function Application(props) {
 
       });
   }, []);
+  const interviewersForDay = getInterviewersForDay(state,state.day);
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   console.log("daily", dailyAppointments);
   const arrAppointment = dailyAppointments.map((appointment) => {
@@ -50,6 +52,7 @@ export default function Application(props) {
         time={appointment.time}
         // interview={appointment.interview}
         interview={interview}
+        interviewers={interviewersForDay}
       />)
   });
   // <Appointment key={appointment.id} {...appointment} />);
