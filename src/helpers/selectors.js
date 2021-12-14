@@ -14,7 +14,7 @@ export function getInterview(state, interview) {
   if (interview !== null) {
     newObj["student"] = interview.student;
     for (let key in state.interviewers) {
-      if (key == interview.interviewer) {
+      if (state.interviewers[key].id === interview.interviewer) {
         newObj["interviewer"] = state.interviewers[key];
       }
     }

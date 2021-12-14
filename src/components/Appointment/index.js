@@ -17,7 +17,7 @@ export default function Appointment(props) {
 	const DELETE = "DELETE";
 	const CONFIRM = "CONFIRM";
 	const EDIT = "EDIT";
-	const SAVE = "SAVE";
+	const SAVING = "SAVE";
 	const ERROR_SAVE = "ERROR_SAVE";
 	const ERROR_DELETE = "ERROR_DELETE";
 	const { mode, transition, back } = useVisualMode(
@@ -30,23 +30,24 @@ export default function Appointment(props) {
 			student: name,
 			interviewer
 		};
-		transition(SAVE);
+		transition(SAVING);
 		console.log("props.bookInterview", props.id, interview.interviewer);
 		props.bookInterview(props.id, interview)
 			.then((res) =>
 				transition(SHOW))
 			.catch((err) =>
-				transition(ERROR_SAVE))
+			//replace the SAVING mode in the history so when we swicth to Form after Error 
+			 transition(ERROR_SAVE, true));
 
 	}
 
 	function onDelete() {
-		transition(DELETE);
+		transition(DELETE, true);
 		props.cancelInterview(props.id)
 			.then((res) =>
 				transition(EMPTY))
 			.catch((err) =>
-				transition(ERROR_DELETE))
+			transition(ERROR_DELETE, true));
 	}
 
 	return (
@@ -54,7 +55,7 @@ export default function Appointment(props) {
 			<Header time={props.time} />
 			<article className="appointment">
 				{mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-				{mode === SAVE && <Status />}
+				{mode === SAVING && <Status />}
 				{mode === DELETE && <Status message={"Deleting.."} />}
 				{mode === ERROR_DELETE && <Error onClose={() => back()} message={"could not delete appointment"} />}
 				{mode === ERROR_SAVE && <Error onClose={() => back()} message={"Could not save"} />}
