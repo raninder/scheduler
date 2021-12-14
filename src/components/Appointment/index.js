@@ -36,8 +36,8 @@ export default function Appointment(props) {
 			.then((res) =>
 				transition(SHOW))
 			.catch((err) =>
-			//replace the SAVING mode in the history so when we swicth to Form after Error 
-			 transition(ERROR_SAVE, true));
+				//replace the SAVING mode in the history so when we swicth to Form after Error 
+				transition(ERROR_SAVE, true));
 
 	}
 
@@ -47,7 +47,7 @@ export default function Appointment(props) {
 			.then((res) =>
 				transition(EMPTY))
 			.catch((err) =>
-			transition(ERROR_DELETE, true));
+				transition(ERROR_DELETE, true));
 	}
 
 	return (
@@ -63,7 +63,7 @@ export default function Appointment(props) {
 				{mode === SHOW && (
 					<Show
 						student={props.interview.student}
-						//interviewer={props.interview.interviewer}
+						interviewer={props.interview.interviewer.name}
 						onDelete={() => transition(CONFIRM)}
 						onEdit={() => transition(EDIT)}
 
