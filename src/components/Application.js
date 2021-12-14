@@ -39,6 +39,7 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
+    console.log("interview", interview);
     return axios.put(`/api/appointments/${id}`, {interview})
     .then((response) => {
     setState({ ...state,  appointments})
@@ -46,6 +47,23 @@ export default function Application(props) {
     .catch((err)=> console.log(err))
   }
 
+
+  function cancelInterview(id){
+    console.log("id delete",id);
+    const appointment = {
+      ...state.appointments[id],
+      interview :null
+  }
+  const appointments = {
+    ...state.appointments,
+    [id]: appointment
+  };
+  return axios.delete(`/api/appointments/${id}`,appointment)
+  .then((response) => {
+    setState({ ...state,  appointments})
+    })
+    .catch((err)=> console.log(err))
+  }
   useEffect(() => {
     Promise.all([
       axios.get('api/days'),
@@ -53,7 +71,7 @@ export default function Application(props) {
       axios.get('api/interviewers')
     ])
       .then((all) => {
-        console.log(all);
+        console.log("all",all);
         // previously setDays now changed to setSate  setDays([...response.data])
         setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
 
@@ -72,7 +90,9 @@ export default function Application(props) {
         //get data from helper functions 
         interview={interview}
         interviewers={interviewersForDay}
-        bookInterview = {bookInterview}
+        bookInterview ={bookInterview}
+        cancelInterview={cancelInterview}
+        
       />)
   });
   // <Appointment key={appointment.id} {...appointment} />);
