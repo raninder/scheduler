@@ -7,10 +7,6 @@ export default function Form(props) {
 	const [student, setStudent] = useState(props.student || "");
 	const [interviewer, setInterviewer] = useState(props.interviewer || null);
 	const [error, setError] = useState("");
-	// const reset = () => {
-	// 	setStudent("");
-	// 	setInterviewer(null);
-	// }
 
 	function validate() {
 		if (student === "") {
@@ -20,11 +16,13 @@ export default function Form(props) {
 		setError("");
 		props.onSave(student, interviewer);
 	}
+
 	function reset() {
 		setStudent("");
 		setInterviewer(null);
 	}
-	function cancel(){
+
+	function cancel() {
 		reset();
 		props.onCancel();
 	}
@@ -40,23 +38,23 @@ export default function Form(props) {
 						value={student}
 						onChange={(event) => setStudent(event.target.value)}
 						placeholder="Enter Student Name"
-						data-testid="student-name-input" 
+						data-testid="student-name-input"
 					/>
 				</form>
+
 				<section className="appointment__validation">{error}</section>
+
 				<InterviewerList
 					interviewers={interviewers}
 					interviewer={interviewer}
-					value= {interviewer}
-					onChange={(value)=>setInterviewer(value)}
-
+					value={interviewer}
+					onChange={(value) => setInterviewer(value)}
 				/>
 			</section>
+
 			<section className="appointment__card-right">
 				<section className="appointment__actions">
-				{/* <Button danger onClick= {onCancel}>Cancel</Button> */}
 					<Button danger onClick={cancel}>Cancel</Button>
-					{/* <Button confirm onClick={()=>props.onSave(student,interviewer)}>Save</Button> */}
 					<Button confirm onClick={validate}>Save</Button>
 				</section>
 			</section>

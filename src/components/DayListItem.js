@@ -4,11 +4,12 @@ import "components/DayListItem.scss";
 import { PROPERTY_TYPES } from "@babel/types";
 
 export default function DayListItem(props) {
-
 	let dayClass = classNames("day-list__item", {
 		"day-list__item--selected": props.selected,
 		"day-list__item--full": props.spots === 0
 	});
+
+	//set spots status
 	const formatSpots = () => {
 		if (props.spots === 0) {
 			return "no spots remaining";

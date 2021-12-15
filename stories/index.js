@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
@@ -35,7 +35,9 @@ storiesOf("Button", module)
     </Button>
   ));
 
+
 //Stories for DayListItem
+
 storiesOf("DayListItem", module) //Initiates Storybook and registers our DayListItem component
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -47,7 +49,6 @@ storiesOf("DayListItem", module) //Initiates Storybook and registers our DayList
     <DayListItem name="Tuesday" onChange={action("setDay")} spots={5} /> // action() allows us to create a callback that appears in the actions panel when clicked
   ));
 
-//Stories for DayList
 const days = [
   {
     id: 1,
@@ -66,6 +67,9 @@ const days = [
   },
 ];
 
+
+//Stories for DayList
+
 storiesOf("DayList", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
@@ -80,12 +84,14 @@ storiesOf("DayList", module)
     <DayList days={days} value={"Wednesday"} onChange={action("setDay")} />
   ));
 
-//stories for InterviewerListItem
 const interviewer = {
   id: 1,
   name: "Sylvia Palmer",
   avatar: "https://i.imgur.com/LpaY82x.png"
 };
+
+
+//stories for InterviewerListItem
 
 storiesOf("InterviewerListItem", module)
   .addParameters({
@@ -117,7 +123,9 @@ storiesOf("InterviewerListItem", module)
     />
   ));
 
+
 //stories for InterviewerList
+
 const interviewers = [
   { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
   { id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png" },
@@ -148,6 +156,7 @@ storiesOf("InterviewerList", module)
 
     />
   ));
+
 
 //stories for Apppointment 
 
