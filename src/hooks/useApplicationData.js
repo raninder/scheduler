@@ -48,7 +48,7 @@ export default function useApplicationData(initial) {
 					}
 					return day;
 				})
-				setState({ ...state, appointments, days })
+				setState(prev => ({ ...prev, appointments, days }));
 			})
 
 	}
@@ -72,7 +72,7 @@ export default function useApplicationData(initial) {
 					}
 					return day;
 				})
-				setState({ ...state, appointments, days })
+				setState(prev => ({ ...prev, appointments, days }));
 			})
 
 	}
