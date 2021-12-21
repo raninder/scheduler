@@ -13,6 +13,10 @@ export default function Form(props) {
 			setError("Student name cannot be blank");
 			return;
 		}
+		if(student.length>256) {
+			setError("Student name cannot be more than 256 characters");
+			return;
+		}
 		if (!interviewer) {
 			setError('Must select an interviewer')
 			return;
