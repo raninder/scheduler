@@ -37,7 +37,7 @@ export default function Appointment(props) {
 		transition(SAVING);
 
 		props.bookInterview(props.id, interview)
-			.then((res) =>
+			.then(() =>
 				transition(SHOW))
 			.catch((err) =>
 
@@ -49,7 +49,7 @@ export default function Appointment(props) {
 	function onDelete() {
 		transition(DELETE, true);
 		props.cancelInterview(props.id)
-			.then((res) =>
+			.then(() =>
 				transition(EMPTY))
 			.catch((err) =>
 				transition(ERROR_DELETE, true));
@@ -89,7 +89,7 @@ export default function Appointment(props) {
 					<Form onCancel={() => back()}
 						onSave={save}
 						student={props.interview.student}
-						interviewer={props.interview.interviewer}
+						interviewer={props.interview.interviewer.id}
 						interviewers={props.interviewers}
 					/>
 				}
