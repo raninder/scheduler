@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import "components/DayListItem.scss";
-import { PROPERTY_TYPES } from "@babel/types";
+
 
 export default function DayListItem(props) {
 	let dayClass = classNames("day-list__item", {
@@ -23,7 +23,7 @@ export default function DayListItem(props) {
 	}
 
 	return (
-		<li className={dayClass} onClick={() => props.setDay(props.name)} selected={props.selected} >
+		<li className={dayClass} onClick={() => props.setDay(props.name)} >
 			<h2 className="text--regular">Day Name: {props.name}</h2>
 			<h3 className="text--light">{formatSpots()} </h3>
 		</li>

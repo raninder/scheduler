@@ -4,21 +4,18 @@ import DayListItem from "components/DayListItem";
 export default function DayList(props) {
 
 	const { days, setDay, value } = props;
-	const arrDays = days.map(dayItem =>
+	
+	const arrDays = days.map(dayItem => {
+		return(
 		<DayListItem
 			key={dayItem.id}
 			name={dayItem.name}
 			spots={dayItem.spots}
-			//change setDays to onChange and day to value to reflect HTML format
 			selected={dayItem.name === value}
 			setDay={setDay}
-		/>);
+		/>
+		);
+		})
 
-	return (
-		<ul>
-			<li>
-				{arrDays}
-			</li>
-		</ul>
-	);
+	return (<ul><li>{arrDays}</li></ul>);
 }
