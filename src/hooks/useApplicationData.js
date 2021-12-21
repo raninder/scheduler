@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { setSpots } from "helpers/selectors.js";
 import axios from "axios"
 
 export default function useApplicationData(initial) {
@@ -28,7 +29,7 @@ export default function useApplicationData(initial) {
 		//React useEffect only once
 	}, []);
 
-	//book new appointment
+	
 	function bookInterview(id, interview) {
 		const appointment = {
 			...state.appointments[id],
@@ -42,18 +43,11 @@ export default function useApplicationData(initial) {
 		//update state with new appointment and spots
 		return axios.put(`/api/appointments/${id}`, { interview })
 			.then((response) => {
-				const days = state.days.map(day => {
-					if (day.appointments.indexOf(id) > -1) {
-						day.spots = day.spots - 1;
-					}
-					return day;
-				})
-				setState(prev => ({ ...prev, appointments, days }));
-			})
-
+				setState(prev => ({ ...prev, appointments }));
+        setState(prev => ({ ...prev, days: setSpots(prev) }));
+      })
 	}
 
-	//delete an appointment
 	function cancelInterview(id) {
 		const appointment = {
 			...state.appointments[id],
@@ -72,7 +66,9 @@ export default function useApplicationData(initial) {
 					}
 					return day;
 				})
+			
 				setState(prev => ({ ...prev, appointments, days }));
+				
 			})
 
 	}
