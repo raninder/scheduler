@@ -45,3 +45,7 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Running scheduler-api
+To get data from api,follow database procedure as described on
+https://github.com/lighthouse-labs/scheduler-api.git
